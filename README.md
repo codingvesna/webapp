@@ -6,7 +6,7 @@
  
   Test Cases:
   - Test Main Page - index.jsp
-  - Test Login page - login.jsp
+  - Test Login page - home.jsp
 
 ### Prerequisities for App Development
 
@@ -26,15 +26,16 @@
  - Docker
  - AWS
  
- ## Part 1
+ ## Part 1 - Freestyle Job
  **Assignment** Jenkins Freestyle Job -> Build Docker Image -> Deploy 
  
-	### Prerequisities for App Development
+	### Prerequisities 
    - Ubuntu Server (EC2 instance)
    - Jenkins
    - Docker
  
    Source Code: https://github.com/codingvesna/webapp
+   
    Docker Image: https://hub.docker.com/r/vesnam/webapp
    
    ### Steps
@@ -70,19 +71,22 @@ volumes:
 	 - Docker Compose Build Step 
 	 
   5. Create Freestyle Jenkins Job
-     - Check out from SCM `https://github.com/codingvesna/webapp.git`
+     - Checkout from SCM `https://github.com/codingvesna/webapp.git`
 	 - Build Project with Maven -> package `devops.war` in `target` folder
 	 - Credentials and repo name for publishing a Docker Image on DockerHub
-	 - Post-build: archive the artifacts
-	 
-  6. Run `docker-compose up -d`
+	 - Add docker compose build step in Jenkins
+	 - Post-build: archive the artifacts	 
   
-  7. Serve the app 
-     'http://localhost:8081/devops/'
+  6. Serve the web page 
+  
+     `http://localhost:8081/devops/`
 	 
-     'http://localhost:8081/devops/index.jsp'
+     `http://localhost:8081/devops/index.jsp`
 	 
-	 'http://localhost:8081/devops/home.jsp'
+	 `http://localhost:8081/devops/home.jsp`
 	 
-  localhost <=> EC2 public_ip_addr
+   localhost -> EC2 public_ip_addr
  
+**Process Overview:** Pull the source code from GitHub, integrate GitHub with Jenkins, integrate Docker with Jenkins, start build phase.
+
+**Result:** built docker image, run the container from image and serve web pages
