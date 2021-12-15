@@ -113,6 +113,14 @@ FROM tomcat:9
 COPY --from=build /app/target/*.war /usr/local/tomcat/webapps
 EXPOSE 8080
 ```
+**EXPLAINED**
+
+This is a `two-stage` build as there are two `FROM` statements.
+
+The `build` (maven) stage is the base stage for the first build. This is used to build the `war` file for the app.
+
+The `tomcat` stage is the second and final base image for the build. The `war` file generated in the `build` stage is copied over to this stage using
+`COPY --from=build` syntax.
 
 2. docker-compose 
 ```
