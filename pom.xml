@@ -45,11 +45,7 @@
        <version>1.4.0</version>
        <scope>test</scope>
     </dependency>
-    <dependency>
-       <groupId>org.junit.platform</groupId>
-       <artifactId>junit-platform-reporting</artifactId>
-       <version>1.4.0</version>
-    </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
