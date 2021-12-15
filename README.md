@@ -90,3 +90,52 @@ volumes:
 **Process Overview:** Pull the source code from GitHub, integrate GitHub with Jenkins, integrate Docker with Jenkins, start build phase.
 
 **Result:** built docker image, run the container from image and serve web pages
+
+## Part 3 - Multi Stage Docker Build
+
+Source Code: https://github.com/codingvesna/webapp/tree/multi-stage
+
+Docker Image: https://hub.docker.com/r/vesnam/webapp_multi_stage
+
+### Steps
+
+1. Create Dockerfile
+
+```
+FROM maven:3.8.4-jdk-11 AS build
+WORKDIR /app
+COPY src src
+COPY pom.xml .
+RUN mvn package
+
+FROM tomcat:9
+# copying from stage
+COPY --from=build /app/target/*.war /usr/local/tomcat/webapps
+EXPOSE 8080
+```
+
+2. docker-compose 
+```
+version: "3.9"
+services:
+   app:
+      image: vesnam/webapp_multi_stage:latest
+      container_name: java-web-app-multi
+      ports:
+         - '8081:8080'
+      volumes:
+         - /var/run/docker.sock:/var/run/docker.sock
+         - logvolume02:/var/log
+volumes:
+   logvolume02: {}
+```
+
+3. Create Jenkins Freestyle Job 
+
+Repeat the steps from Part 1 --> Step 5 
+
+** Next Step - update ** create pipeline
+
+4. Serve the web page 
+  
+     `http://localhost:8081/app/`
