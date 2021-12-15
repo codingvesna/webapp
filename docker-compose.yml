@@ -1,12 +1,12 @@
 version: "3.9"
 services:
    app:
-      image: vesnam/webapp:latest
-      container_name: java-web-app
+      image: vesnam/webapp-pipeline
+      container_name: java-web-app-pipeline
       ports:
          - '8081:8080'
       volumes:
          - /var/run/docker.sock:/var/run/docker.sock
-         - logvolume01:/var/log
+         - logvolume03:/var/log
 volumes:
-   logvolume01: {}
+   logvolume03: {}
