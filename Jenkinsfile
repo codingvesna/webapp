@@ -65,8 +65,8 @@ pipeline {
 
         stage('cleanup') {
             steps{
-                sh 'docker stop $container'
-                sh 'docker rm $container'
+//                 sh 'docker stop $container'
+//                 sh 'docker rm $container'
                 sh 'docker rmi $registry'
             }
         }
