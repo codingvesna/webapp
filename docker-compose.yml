@@ -1,7 +1,7 @@
 version: "3.9"
 services:
    app:
-      image: vesnam/webapp-pipeline
+      image: vesnam/webapp-pipeline:latest
       container_name: java-web-app-pipeline
       ports:
          - '8081:8080'
