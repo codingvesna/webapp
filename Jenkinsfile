@@ -3,6 +3,7 @@ pipeline {
         registry = "vesnam/webapp-pipeline"
         registryCredential = 'dockerhub'
         dockerImage = ''
+        container = 'java-web-app-pipeline'
     }
     agent any
     tools {
@@ -56,16 +57,20 @@ pipeline {
             }
         }
 
-        stage('cleanup') {
-            steps{
-                sh "docker rmi $registry"
-            }
-        }
-
         stage('run container') {
             steps {
                 sh 'docker-compose up -d --build'
             }
         }
+
+        stage('cleanup') {
+            steps{
+                sh 'docker stop $container'
+                sh 'docker rm $container'
+                sh 'docker rmi $registry'
+            }
+        }
+
+
     }
 }
