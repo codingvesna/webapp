@@ -7,7 +7,7 @@ public class JWebUnitTest {
     @Before
     public void prepare() {
        // setBaseUrl("http://localhost:8081/webapp");
-        setBaseUrl("http://webapp-env.eba-ptnmqh8m.eu-west-1.elasticbeanstalk.com/");
+        setBaseUrl("http://java-web-app.eu-west-1.elasticbeanstalk.com/");
     }
     @Test
     public void testLoginPage() {
